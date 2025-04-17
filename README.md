@@ -39,9 +39,10 @@ A Java-based desktop application for managing and simulating water supply system
 
 ---
 
-## 📸 Screenshots *(Optional)*
+## 📸 Screenshots **
 
-![image](https://github.com/user-attachments/assets/6379064e-f0f7-4b83-9037-746b60819c52)
+![image](https://github.com/user-attachments/assets/bad36126-c7de-45a6-a3d8-f30fc0c6d9f4)
+
 
 
 ---
