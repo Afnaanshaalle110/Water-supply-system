@@ -1,6 +1,6 @@
 package water_supply;
-
 import java.sql.Date;
+import javax.swing.JOptionPane;
 
 public class Dash extends javax.swing.JFrame {
 
@@ -8,10 +8,15 @@ public class Dash extends javax.swing.JFrame {
     String r_sin;
     String b_zone;
     String stat;
+    String h_zone, com_bills_zone;
 
     public Dash() {
         initComponents();
         this.setLocationRelativeTo(this);
+        co.fillComboBox(comprec, "select concat(t.rec_no,' ',p.name) mgc from receipt t, people p where t.people_no = p.people_no", "mgc");
+        co.fillComboBox(cuscom, "SELECT concat(people_no,',',name) as cus from people p", "cus");
+        co.fillComboBox(hcom1, "SELECT concat(h_no,',',owner,',', a.district,',',a.village,',',a.zone) as guryo from homes h , address a where h.add_no=a.add_no", "guryo");
+        co.fillComboBox(com_b_zone, "SELECT concat(a.zone,'-',p1.name,'-',p2.name,'-',s.ser_name) as zone from address a,homes h,customer_homes ch,people p1,people p2,services s where a.add_no=h.add_no and h.h_no=ch.h_no and p1.people_no=ch.cus_no and p2.people_no=h.owner and s.ser_no=ch.ser_no ORDER by a.zone", "zone");
     }
 
     /**
@@ -25,9 +30,9 @@ public class Dash extends javax.swing.JFrame {
 
         rSPanelMaterial1 = new RSMaterialComponent.RSPanelMaterial();
         rSButtonMaterialIconOne5 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne6 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne7 = new RSMaterialComponent.RSButtonMaterialIconOne();
-        rSButtonMaterialIconOne4 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rg = new RSMaterialComponent.RSButtonMaterialIconOne();
+        rc = new RSMaterialComponent.RSButtonMaterialIconOne();
+        fnn = new RSMaterialComponent.RSButtonMaterialIconOne();
         rSButtonMaterialIconOne2 = new RSMaterialComponent.RSButtonMaterialIconOne();
         rSButtonMaterialIconOne1 = new RSMaterialComponent.RSButtonMaterialIconOne();
         rSPanelMaterial3 = new RSMaterialComponent.RSPanelMaterial();
@@ -62,7 +67,7 @@ public class Dash extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         bd1 = new com.toedter.calendar.JDateChooser();
         bd2 = new com.toedter.calendar.JDateChooser();
-        bcom = new RSMaterialComponent.RSComboBox();
+        com_b_zone = new RSMaterialComponent.RSComboBox();
         jButton4 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
@@ -100,7 +105,23 @@ public class Dash extends javax.swing.JFrame {
         jButton26 = new javax.swing.JButton();
         hcom8 = new RSMaterialComponent.RSComboBox();
         cuscom = new RSMaterialComponent.RSComboBox();
-        rSLabelImage5 = new necesario.RSLabelImage();
+        jPanel15 = new javax.swing.JPanel();
+        jButton27 = new javax.swing.JButton();
+        jPanel16 = new javax.swing.JPanel();
+        jButton28 = new javax.swing.JButton();
+        jButton29 = new javax.swing.JButton();
+        hcom9 = new RSMaterialComponent.RSComboBox();
+        jPanel17 = new javax.swing.JPanel();
+        jButton30 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
+        hcom10 = new RSMaterialComponent.RSComboBox();
+        jPanel18 = new javax.swing.JPanel();
+        jButton32 = new javax.swing.JButton();
+        jButton33 = new javax.swing.JButton();
+        hcom11 = new RSMaterialComponent.RSComboBox();
+        cuscom1 = new RSMaterialComponent.RSComboBox();
+        jPanel5 = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,40 +143,40 @@ public class Dash extends javax.swing.JFrame {
                 rSButtonMaterialIconOne5ActionPerformed(evt);
             }
         });
-        rSPanelMaterial1.add(rSButtonMaterialIconOne5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 290, 50));
+        rSPanelMaterial1.add(rSButtonMaterialIconOne5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 290, 50));
 
-        rSButtonMaterialIconOne6.setBackground(new java.awt.Color(0, 153, 204));
-        rSButtonMaterialIconOne6.setText("Registration");
-        rSButtonMaterialIconOne6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        rSButtonMaterialIconOne6.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RATE_REVIEW);
-        rSButtonMaterialIconOne6.addActionListener(new java.awt.event.ActionListener() {
+        rg.setBackground(new java.awt.Color(0, 153, 204));
+        rg.setText("Registration");
+        rg.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        rg.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RATE_REVIEW);
+        rg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMaterialIconOne6ActionPerformed(evt);
+                rgActionPerformed(evt);
             }
         });
-        rSPanelMaterial1.add(rSButtonMaterialIconOne6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 290, 50));
+        rSPanelMaterial1.add(rg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 50));
 
-        rSButtonMaterialIconOne7.setBackground(new java.awt.Color(0, 153, 204));
-        rSButtonMaterialIconOne7.setText("Reception");
-        rSButtonMaterialIconOne7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        rSButtonMaterialIconOne7.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
-        rSButtonMaterialIconOne7.addActionListener(new java.awt.event.ActionListener() {
+        rc.setBackground(new java.awt.Color(0, 153, 204));
+        rc.setText("Reception");
+        rc.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        rc.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.RECEIPT);
+        rc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMaterialIconOne7ActionPerformed(evt);
+                rcActionPerformed(evt);
             }
         });
-        rSPanelMaterial1.add(rSButtonMaterialIconOne7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 290, 50));
+        rSPanelMaterial1.add(rc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 290, 50));
 
-        rSButtonMaterialIconOne4.setBackground(new java.awt.Color(0, 153, 204));
-        rSButtonMaterialIconOne4.setText("Financial");
-        rSButtonMaterialIconOne4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        rSButtonMaterialIconOne4.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCOUNT_BALANCE);
-        rSButtonMaterialIconOne4.addActionListener(new java.awt.event.ActionListener() {
+        fnn.setBackground(new java.awt.Color(0, 153, 204));
+        fnn.setText("Financial");
+        fnn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        fnn.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCOUNT_BALANCE);
+        fnn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMaterialIconOne4ActionPerformed(evt);
+                fnnActionPerformed(evt);
             }
         });
-        rSPanelMaterial1.add(rSButtonMaterialIconOne4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 290, 50));
+        rSPanelMaterial1.add(fnn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 290, 50));
 
         rSButtonMaterialIconOne2.setBackground(new java.awt.Color(0, 153, 204));
         rSButtonMaterialIconOne2.setText("Report");
@@ -166,7 +187,7 @@ public class Dash extends javax.swing.JFrame {
                 rSButtonMaterialIconOne2ActionPerformed(evt);
             }
         });
-        rSPanelMaterial1.add(rSButtonMaterialIconOne2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 290, 50));
+        rSPanelMaterial1.add(rSButtonMaterialIconOne2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 290, 50));
 
         rSButtonMaterialIconOne1.setBackground(new java.awt.Color(0, 153, 204));
         rSButtonMaterialIconOne1.setText("LogOut");
@@ -177,9 +198,9 @@ public class Dash extends javax.swing.JFrame {
                 rSButtonMaterialIconOne1ActionPerformed(evt);
             }
         });
-        rSPanelMaterial1.add(rSButtonMaterialIconOne1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, 290, 50));
+        rSPanelMaterial1.add(rSButtonMaterialIconOne1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 650, 290, 50));
 
-        getContentPane().add(rSPanelMaterial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 330, 1270));
+        getContentPane().add(rSPanelMaterial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 330, 1240));
 
         rSPanelMaterial3.setIntensity(5);
         rSPanelMaterial3.setShadowBottom(false);
@@ -189,17 +210,17 @@ public class Dash extends javax.swing.JFrame {
         rSLabelTextIcon2.setBackground(new java.awt.Color(255, 255, 255));
         rSLabelTextIcon2.setForeground(new java.awt.Color(255, 255, 255));
         rSLabelTextIcon2.setText("Water Supply System");
-        rSLabelTextIcon2.setFont(new java.awt.Font("Times New Roman", 1, 130)); // NOI18N
+        rSLabelTextIcon2.setFont(new java.awt.Font("Times New Roman", 1, 110)); // NOI18N
         rSLabelTextIcon2.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FAVORITE);
-        rSPanelMaterial3.add(rSLabelTextIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 1780, 70));
+        rSPanelMaterial3.add(rSLabelTextIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 1600, 160));
         rSLabelTextIcon2.getAccessibleContext().setAccessibleName("Water Supply  System");
 
-        getContentPane().add(rSPanelMaterial3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1900, 110));
+        getContentPane().add(rSPanelMaterial3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1910, 210));
 
         panal1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/water_supply/water2.jpg"))); // NOI18N
-        panal1.add(rSLabelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1570, 1300));
+        panal1.add(rSLabelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1570, 1240));
 
         Main.addTab("tab1", panal1);
 
@@ -369,13 +390,13 @@ public class Dash extends javax.swing.JFrame {
         jPanel3.add(bd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 240, -1));
         jPanel3.add(bd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 240, -1));
 
-        bcom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select BIll Zone" }));
-        bcom.addActionListener(new java.awt.event.ActionListener() {
+        com_b_zone.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select BIll Zone" }));
+        com_b_zone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcomActionPerformed(evt);
+                com_b_zoneActionPerformed(evt);
             }
         });
-        jPanel3.add(bcom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 240, -1));
+        jPanel3.add(com_b_zone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 240, -1));
 
         jButton4.setText("Single");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -533,7 +554,7 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel6.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 280, 210));
 
-        panal5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 280, 210));
+        panal5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, 280, 210));
 
         jPanel11.setBackground(new java.awt.Color(255, 102, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer Statement", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
@@ -652,14 +673,145 @@ public class Dash extends javax.swing.JFrame {
         });
         jPanel11.add(cuscom, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        panal5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, 280, 210));
+        jPanel15.setBackground(new java.awt.Color(255, 102, 255));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer Statement", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        jPanel15.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSLabelImage5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/water_supply/report.png"))); // NOI18N
-        panal5.add(rSLabelImage5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1570, 1300));
+        jButton27.setText("Single");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+        jPanel15.add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 70, -1));
+
+        jPanel16.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Home Report", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        jPanel16.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton28.setText("Zone");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanel16.add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 70, -1));
+
+        jButton29.setText("All");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
+        jPanel16.add(jButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 152, 70, -1));
+
+        hcom9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Homes" }));
+        hcom9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hcom9ActionPerformed(evt);
+            }
+        });
+        jPanel16.add(hcom9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 210, -1));
+
+        jPanel15.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 280, 210));
+
+        jPanel17.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Home Report", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        jPanel17.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton30.setText("Zone");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(jButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 70, -1));
+
+        jButton31.setText("All");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(jButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 152, 70, -1));
+
+        hcom10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Homes" }));
+        hcom10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hcom10ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(hcom10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 210, -1));
+
+        jPanel18.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Home Report", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14))); // NOI18N
+        jPanel18.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton32.setText("Zone");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 70, -1));
+
+        jButton33.setText("All");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 152, 70, -1));
+
+        hcom11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Homes" }));
+        hcom11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hcom11ActionPerformed(evt);
+            }
+        });
+        jPanel18.add(hcom11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 210, -1));
+
+        jPanel17.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 280, 210));
+
+        jPanel15.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 280, 210));
+
+        cuscom1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Customer" }));
+        cuscom1.setColorArrow(new java.awt.Color(255, 102, 255));
+        cuscom1.setColorBorde(new java.awt.Color(255, 102, 255));
+        cuscom1.setColorFondo(new java.awt.Color(255, 102, 255));
+        cuscom1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuscom1ActionPerformed(evt);
+            }
+        });
+        jPanel15.add(cuscom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        jPanel11.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 280, 210));
+
+        panal5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, 280, 210));
+
+        jPanel5.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "get_customer_homes_stats", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 18))); // NOI18N
+        jPanel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton6.setText("Get");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 80, 30));
+
+        panal5.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 150, 260, 190));
 
         Main.addTab("Report", panal5);
 
-        getContentPane().add(Main, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 1580, 1330));
+        getContentPane().add(Main, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 1580, 1300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -669,25 +821,25 @@ public class Dash extends javax.swing.JFrame {
         Main.setSelectedComponent(panal1);
     }//GEN-LAST:event_rSButtonMaterialIconOne5ActionPerformed
 
-    private void rSButtonMaterialIconOne6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMaterialIconOne6ActionPerformed
+    private void rgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgActionPerformed
         Main.setSelectedComponent(panal2);
-    }//GEN-LAST:event_rSButtonMaterialIconOne6ActionPerformed
+    }//GEN-LAST:event_rgActionPerformed
 
-    private void rSButtonMaterialIconOne7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMaterialIconOne7ActionPerformed
+    private void rcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rcActionPerformed
         Main.setSelectedComponent(panal3);
-    }//GEN-LAST:event_rSButtonMaterialIconOne7ActionPerformed
+    }//GEN-LAST:event_rcActionPerformed
 
-    private void rSButtonMaterialIconOne4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMaterialIconOne4ActionPerformed
+    private void fnnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnnActionPerformed
         Main.setSelectedComponent(panal4);
-    }//GEN-LAST:event_rSButtonMaterialIconOne4ActionPerformed
+    }//GEN-LAST:event_fnnActionPerformed
 
     private void rSButtonMaterialIconOne2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMaterialIconOne2ActionPerformed
         Main.setSelectedComponent(panal5);
     }//GEN-LAST:event_rSButtonMaterialIconOne2ActionPerformed
 
     private void rSButtonMaterialIconOne1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMaterialIconOne1ActionPerformed
-        Login l = new Login();
-        l.show();
+        Login_Form f = new Login_Form();
+        f.show();
     }//GEN-LAST:event_rSButtonMaterialIconOne1ActionPerformed
 
     private void rSButtonMaterialIconTwo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMaterialIconTwo2ActionPerformed
@@ -742,7 +894,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void comprecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprecActionPerformed
-        String array[] = comprec.getSelectedItem().toString().split(",");
+        String array[] = comprec.getSelectedItem().toString().split(" ");
         r_sin = array[0];
     }//GEN-LAST:event_comprecActionPerformed
 
@@ -757,16 +909,19 @@ public class Dash extends javax.swing.JFrame {
         co.report("src\\water_supply\\Bills_all.jrxml", "call bills_all()");
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void bcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcomActionPerformed
+    private void com_b_zoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_com_b_zoneActionPerformed
         // TODO add your handling code here:
-        String array[] = bcom.getSelectedItem().toString().split(",");
-        b_zone = array[0];
-    }//GEN-LAST:event_bcomActionPerformed
+        String array[] = com_b_zone.getSelectedItem().toString().split("-");
+        com_bills_zone = array[0];
+    }//GEN-LAST:event_com_b_zoneActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Date d1 = new Date(bd1.getDate().getTime());
         Date d2 = new Date(bd2.getDate().getTime());
-        co.report("src\\water_supply\\bills_zone.jrxml", "call home_rep_byzone('" + b_zone + "','" + d1 + "','" + d2 + "')");
+//        String sql = "call bills_zone('" + d1 + "','" + d2 + "','" + com_bills_zone + "')";
+//        JOptionPane.showMessageDialog(null, sql);
+        co.report("src\\water_supply\\bills_zone.jrxml", "call bills_zone('" + d1 + "','" + d2 + "','" + com_bills_zone + "')");
+//        String sql ="call bills_zone('" + d1 + "','" + d2 + "','" + com_bills_zone + "')"
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -780,7 +935,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        co.report("src\\water_supply\\home_rep_byzone.jrxml", "home_rep_byzone(('" + h_zone + "')");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -788,7 +943,8 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void hcom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hcom1ActionPerformed
-        // TODO add your handling code here:
+        String array[] = hcom1.getSelectedItem().toString().split(",");
+        h_zone = array[0];
     }//GEN-LAST:event_hcom1ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -872,6 +1028,54 @@ public class Dash extends javax.swing.JFrame {
         stat = array[0];
     }//GEN-LAST:event_cuscomActionPerformed
 
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void hcom9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hcom9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hcom9ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void hcom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hcom10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hcom10ActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void hcom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hcom11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hcom11ActionPerformed
+
+    private void cuscom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuscom1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuscom1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        co.report("src\\water_supply\\get_customer_homes_stats.jrxml", "call get_customer_homes_stats()");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -909,20 +1113,25 @@ public class Dash extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane Main;
-    private RSMaterialComponent.RSComboBox bcom;
     private com.toedter.calendar.JDateChooser bd1;
     private com.toedter.calendar.JDateChooser bd2;
     private com.toedter.calendar.JDateChooser chd1;
     private com.toedter.calendar.JDateChooser chd2;
+    private RSMaterialComponent.RSComboBox com_b_zone;
     private RSMaterialComponent.RSComboBox comprec;
     private RSMaterialComponent.RSComboBox cuscom;
+    private RSMaterialComponent.RSComboBox cuscom1;
+    public RSMaterialComponent.RSButtonMaterialIconOne fnn;
     private RSMaterialComponent.RSComboBox hcom1;
+    private RSMaterialComponent.RSComboBox hcom10;
+    private RSMaterialComponent.RSComboBox hcom11;
     private RSMaterialComponent.RSComboBox hcom2;
     private RSMaterialComponent.RSComboBox hcom3;
     private RSMaterialComponent.RSComboBox hcom4;
     private RSMaterialComponent.RSComboBox hcom6;
     private RSMaterialComponent.RSComboBox hcom7;
     private RSMaterialComponent.RSComboBox hcom8;
+    private RSMaterialComponent.RSComboBox hcom9;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -941,9 +1150,17 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -951,8 +1168,13 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -964,10 +1186,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel panal5;
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne1;
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne2;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne4;
     private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne5;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne6;
-    private RSMaterialComponent.RSButtonMaterialIconOne rSButtonMaterialIconOne7;
     private RSMaterialComponent.RSButtonMaterialIconTwo rSButtonMaterialIconTwo1;
     private RSMaterialComponent.RSButtonMaterialIconTwo rSButtonMaterialIconTwo2;
     private RSMaterialComponent.RSButtonMaterialIconTwo rSButtonMaterialIconTwo3;
@@ -980,11 +1199,12 @@ public class Dash extends javax.swing.JFrame {
     private necesario.RSLabelImage rSLabelImage2;
     private necesario.RSLabelImage rSLabelImage3;
     private necesario.RSLabelImage rSLabelImage4;
-    private necesario.RSLabelImage rSLabelImage5;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon2;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial1;
     private RSMaterialComponent.RSPanelMaterial rSPanelMaterial3;
+    public RSMaterialComponent.RSButtonMaterialIconOne rc;
     private com.toedter.calendar.JDateChooser rd1;
     private com.toedter.calendar.JDateChooser rd2;
+    public RSMaterialComponent.RSButtonMaterialIconOne rg;
     // End of variables declaration//GEN-END:variables
 }

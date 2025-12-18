@@ -8,7 +8,7 @@ public class CustomerHomesTable extends javax.swing.JFrame {
     public CustomerHomesTable() {
         initComponents();
          this.setLocationRelativeTo(this);
-        co.viewTable("select * from Customer_Homes ", c_htable);
+        co.viewTable("SELECT ch.cus_h_no ,h.h_no, p.name,s.ser_name,ch.reg_date,ch.watch,ch.W_starts  from Customer_Homes ch JOIN homes h ON h.h_no=ch.h_no JOIN people p on p.people_no=ch.cus_no JOIN services s on s.ser_no=ch.ser_no", c_htable);
          
     }
 
@@ -43,7 +43,7 @@ public class CustomerHomesTable extends javax.swing.JFrame {
                 rSButtonMaterialIconOne1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonMaterialIconOne1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 170, -1));
+        jPanel1.add(rSButtonMaterialIconOne1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 70, 170, -1));
 
         rSButtonIconTwo1.setBackground(new java.awt.Color(153, 0, 0));
         rSButtonIconTwo1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.CANCEL);
@@ -52,7 +52,7 @@ public class CustomerHomesTable extends javax.swing.JFrame {
                 rSButtonIconTwo1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonIconTwo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        jPanel1.add(rSButtonIconTwo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 0, -1, -1));
 
         rSLabelTextIcon1.setForeground(new java.awt.Color(255, 255, 255));
         rSLabelTextIcon1.setText("C_homes");
@@ -60,7 +60,7 @@ public class CustomerHomesTable extends javax.swing.JFrame {
         rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.LOCATION_ON);
         jPanel1.add(rSLabelTextIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 110));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 110));
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -68,14 +68,14 @@ public class CustomerHomesTable extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 820, Short.MAX_VALUE)
+            .addGap(0, 1320, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 820, 60));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1320, 60));
 
         c_htable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,7 +92,7 @@ public class CustomerHomesTable extends javax.swing.JFrame {
         c_htable.setColorSecondary(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(c_htable);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 820, 420));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 170, 1330, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
